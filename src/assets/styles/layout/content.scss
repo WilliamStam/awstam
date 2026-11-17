@@ -1,0 +1,12 @@
+:root {
+    --app-navbar-height: 3.75rem;
+}
+
+/* Keep scroll-into-view targets (e.g. jump to a script line) clear of the fixed navbar */
+html {
+    scroll-padding-top: var(--app-navbar-height);
+}
+
+#app-content {
+    margin-top: var(--app-navbar-height);
+}

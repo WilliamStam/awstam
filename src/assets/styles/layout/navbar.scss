@@ -1,0 +1,9 @@
+#app-navbar {
+    padding:0;
+    .nav-link {
+        &.router-link-exact-active {
+            color: var(--navbar-active-color);
+            background-color: var(--nav-link-active-bg, var(--bg-2));
+        }
+    }
+}

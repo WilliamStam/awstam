@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Define the branch you want to automatically bump
+TARGET_BRANCH="main"
+
+# Get current branch
+# (symbolic-ref also works before the first commit, where rev-parse HEAD fails)
+CURRENT_BRANCH=$(git symbolic-ref --short -q HEAD || echo "")
+
+# Run the version bump only on the target branch
+if [ "$CURRENT_BRANCH" = "$TARGET_BRANCH" ]; then
+    # 1. Bump the patch version in package.json and package-lock.json.
+    #    --no-git-tag-version stops npm from creating its own commit and tag,
+    #    which would recurse into this hook.
+    npm version patch --no-git-tag-version >/dev/null
+
+    # 2. Stage the modified package.json and package-lock.json files
+    git add package.json package-lock.json
+fi

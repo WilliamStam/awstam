@@ -1,0 +1,12 @@
+@use "bootstrap";
+@use "layout/navbar";
+@use "layout/content";
+@use "layout/footer";
+
+/* Bootstrap keeps closed dialogs rendered (display: flex + visibility: hidden) for its exit
+   animation. They're position: absolute by default, so they'd sit after the footer and add
+   blank scroll height to the page → pin them to the viewport while closed. */
+.dialog:not([open]) {
+    position: fixed;
+    top: 0;
+}
